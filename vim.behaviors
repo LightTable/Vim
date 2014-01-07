@@ -1,7 +1,6 @@
-{:+ {:app [(:lt.objs.plugins/load-js "vim.js")
-(:lt.objs.plugins/load-js "vim_compiled.js")
-           (:lt.objs.plugins/load-keymap "vim.keymap")
+{:+ {:app [(:lt.objs.plugins/load-js ["vim.js" "vim_compiled.js"])
            :lt.plugins.vim/init
+           (:lt.objs.plugins/load-keymap "vim.keymap")
            (:lt.plugins.vim/map-keys {":" ":ltexec vim.ex"
                                       "?" ":ltexec vim.find true"
                                       "/" ":ltexec vim.find"
