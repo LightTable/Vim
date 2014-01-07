@@ -1,0 +1,1 @@
+{:+ {:find-bar.vim {"enter" [:find.hide]}}}
