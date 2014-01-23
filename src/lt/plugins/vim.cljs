@@ -107,14 +107,17 @@
                     (cmd/exec! :find.show))
                   )})
 
+(command {:command :vim.send-key
+          :desc "Vim: Send key to vim"
+          :exec (fn [k]
+                  (when-let [ed (pool/last-active)]
+                    (js/CodeMirror.Vim.handleKey (editor/->cm-ed ed) k)))})
+
 (defn ex-command [cmd]
   (js/CodeMirror.Vim.defineEx (:name cmd) (:name cmd) (:func cmd)))
 
-(behavior ::init
-          :triggers #{:init}
-          :reaction (fn [this]
-                      (ex-command {:name "ltexec"
-                                   :func (fn [cm info]
-                                           (apply cmd/exec! (-> (.-args info)
-                                                                (first)
-                                                                (keyword)) (next (.-args info))))})))
+(ex-command {:name "ltexec"
+             :func (fn [cm info]
+                     (apply cmd/exec! (-> (.-args info)
+                                          (first)
+                                          (keyword)) (next (.-args info))))})
