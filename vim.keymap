@@ -1,1 +1,2 @@
-{:+ {:find-bar.vim {"enter" [:find.hide]}}}
+{:+ {:find-bar.vim {"enter" [:find.hide]}}
+    {:editor {"ctrl-r" [:passthrough]}}}
