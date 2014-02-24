@@ -7,6 +7,8 @@ A thin wrapper around CodeMirror's vim mode that integrates it into Light Table.
 Add the following to your `user.behaviors` (Ctrl-Space -> Settings: User behaviors) in the `:editor` section
 
     (:lt.plugins.vim/activate-vim)
+    
+Restart Light Table after adding this line to prevent errors when using `/` and `:`.
 
 ### License
 
