@@ -48,14 +48,25 @@
 
 (behavior ::map-keys
           :triggers #{:object.instant}
-          :desc "Vim: Map vim keys"
+          :desc "Vim: Map vim keys for normal mode"
           :params [{:label "keys"
                     :example "{\"<BS>\" \"<PageUp>\",\n \"<Space>\" \"<PageDown>\"}"
                     :type :clj}]
           :type :user
           :reaction (fn [this ks]
                       (doseq [[k v] ks]
-                        (js/CodeMirror.Vim.map k v))))
+                        (js/CodeMirror.Vim.map k v "normal"))))
+
+(behavior ::map-keys-visual
+          :triggers #{:object.instant}
+          :desc "Vim: Map vim keys for visual mode"
+          :params [{:label "keys"
+                    :example "{\"<BS>\" \"<PageUp>\",\n \"<Space>\" \"<PageDown>\"}"
+                    :type :clj}]
+          :type :user
+          :reaction (fn [this ks]
+                      (doseq [[k v] ks]
+                        (js/CodeMirror.Vim.map k v "visual"))))
 
 (behavior ::activate-vim
           :triggers #{:object.instant}
