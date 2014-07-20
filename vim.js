@@ -4045,8 +4045,6 @@
       // rather-pathological edge-case of pressing k, immediately
       // followeed by ESC.
       // If the javascript is terrible, sorry. I'm not a JS programmer.
-      // TODO: Figure out a way to turn off await-j mode after a timer
-      //       or after any other key is pressed.
       'K': function(cm) {
           cm.replaceRange('k', cm.getCursor(), cm.getCursor(), "+input");
           cm.setOption('keyMap', 'await-j');
