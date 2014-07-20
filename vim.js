@@ -581,8 +581,7 @@
         if (register) {
           register.clear();
           this.latestRegister = registerName;
-          this.onRecordingDone = cm.openDialog(
-              '(recording)['+registerName+']', null, {bottom:true});
+          this.onRecordingDone = function() { return; }; // cm.openDialog('(recording)['+registerName+']', null, {bottom:true});
           this.isRecording = true;
         }
       }
@@ -3637,7 +3636,7 @@
               if (decimal + hex + octal > 1) { return 'Invalid arguments'; }
               number = decimal && 'decimal' || hex && 'hex' || octal && 'octal';
             }
-            if (args.eatSpace() && args.match(/\/.*\//)) { 'patterns not supported'; }
+            if (args.eatSpace() && args.match(/\/.*\//)) { return 'patterns not supported'; }
           }
         }
         var err = parseArgs();
@@ -4023,6 +4022,8 @@
       }
     }
 
+    var __hack__VimEscape__Waiting;
+      
     CodeMirror.keyMap['vim-insert'] = {
       // TODO: override navigation keys so that Esc will cancel automatic
       // indentation from o, O, i_<CR>
@@ -4036,9 +4037,42 @@
             CodeMirror.commands.newlineAndIndent;
         fn(cm);
       },
+        
+      // Dirty hack modified (read: made even dirtier) from cgag's idea.
+      // https://github.com/cgag/CodeMirror/commit/ff6d554ad989863789ae729a7003e10790d16e85
+      //
+      // But it does work in all cases I've tried other than the
+      // rather-pathological edge-case of pressing k, immediately
+      // followeed by ESC.
+      // If the javascript is terrible, sorry. I'm not a JS programmer.
+      // TODO: Figure out a way to turn off await-j mode after a timer
+      //       or after any other key is pressed.
+      'K': function(cm) {
+          cm.replaceRange('k', cm.getCursor(), cm.getCursor(), "+input");
+          cm.setOption('keyMap', 'await-j');
+          __hack__VimEscape__Waiting = true;
+          setTimeout(
+              function(){
+                  if(__hack__VimEscape__Waiting == true) {
+                      __hack__VimEscape__Waiting = false;
+                      cm.setOption('keyMap', 'vim-insert');
+                  }
+              }, 100);
+      },
       fallthrough: ['default']
     };
 
+    CodeMirror.keyMap['await-j'] = {
+        'J': function(cm) {
+            __hack__VimEscape__Waiting = false;
+            cm.replaceRange('', {ch: cm.getCursor().ch - 1,
+                                 line: cm.getCursor().line},
+                            cm.getCursor(), "+input");
+            exitInsertMode(cm);
+        },
+        fallthrough: ['vim-insert']
+    };
+      
     CodeMirror.keyMap['vim-replace'] = {
       'Backspace': 'goCharLeft',
       fallthrough: ['vim-insert']
