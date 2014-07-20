@@ -6,6 +6,11 @@ I've added in a hack (thanks @cgag for the first version) that does a decent job
 
 For now though, it makes LT usable for those of us that can't live without our ESC shortcuts. Enjoy!
 
+## Installation
+If you need a sequence other than kj to be ESC, edit the vim.js file in this repo starting at line 4041.
+
+Then just replace the vim.js file in your LT plugins folder (on Mac it's in ~/Library/Application Support/LightTable/plugins/Vim but not sure for other OSes) with the new version. You may then need to reload LT.
+
 ## Known Issue
 Though this version of vim.js does work for macro recording, the hack to bind kj to ESC currently leaves
 k characters littered throughout your macro if you use kj to escape from insert mode.
