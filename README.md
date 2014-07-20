@@ -2,8 +2,7 @@
 Apparently CodeMirror doesn't currently allow for multi-key bindings like kj, jk, ii, etc. which many Vim
 users map to ESC to decrease repetitive strain (and annoyance). 
 
-I've added in a hack that does a decent job of simulating this functionality, though it's almost certainly
-not the best way to do it.
+I've added in a hack (thanks @cgag for the first version) that does a decent job of simulating this functionality, though it's almost certainly not the best way to do it.
 
 For now though, it makes LT usable for those of us that can't live without our ESC shortcuts. Enjoy!
 
