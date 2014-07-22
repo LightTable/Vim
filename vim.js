@@ -59,6 +59,7 @@
  *  8. Set up Vim to work as a keymap for CodeMirror.
  */
 
+
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("../lib/codemirror"), require("../addon/search/searchcursor"), require("../addon/dialog/dialog"), require("../addon/edit/matchbrackets.js"));
@@ -580,8 +581,9 @@
             vimGlobalState.registerController.getRegister(registerName);
         if (register) {
           register.clear();
+          lt.objs.notifos.msg_STAR_('(recording)['+registerName+']');
           this.latestRegister = registerName;
-          this.onRecordingDone = function() { return; }; // cm.openDialog('(recording)['+registerName+']', null, {bottom:true});
+          this.onRecordingDone = function(){lt.objs.notifos.msg_STAR_('');};
           this.isRecording = true;
         }
       }
@@ -635,7 +637,17 @@
         macroModeState: new MacroModeState,
         // Recording latest f, t, F or T motion command.
         lastChararacterSearch: {increment:0, forward:true, selectedCharacter:''},
-        registerController: new RegisterController({})
+        registerController: new RegisterController({}),
+        // These two variables were intended to customize the two-character ESC keymap.
+        // I currently don't know how to make this work though.
+        //firstESCCharacter: "'k'",
+        //secondESCCharacter: "'j'",
+        // The timeout for the two-character ESC keymap should be adjusted according
+        // to your typing speed to prevent false positives.
+        ESCSequenceTimeout: 100,
+        // True when first character of two-character escape keymap has been pushed
+        // and timeout has not yet been called.
+        awaitingEscapeSecondCharacter: false
       };
       for (var optionName in options) {
         var option = options[optionName];
@@ -4022,8 +4034,6 @@
       }
     }
 
-    var __hack__VimEscape__Waiting;
-      
     CodeMirror.keyMap['vim-insert'] = {
       // TODO: override navigation keys so that Esc will cancel automatic
       // indentation from o, O, i_<CR>
@@ -4037,34 +4047,32 @@
             CodeMirror.commands.newlineAndIndent;
         fn(cm);
       },
-        
-      // Dirty hack modified (read: made even dirtier) from cgag's idea.
+
+      // Hack modified from cgag's idea.
       // https://github.com/cgag/CodeMirror/commit/ff6d554ad989863789ae729a7003e10790d16e85
       //
-      // But it does work in all cases I've tried other than the
+      // It works in all cases I've tried other than the
       // rather-pathological edge-case of pressing k, immediately
-      // followeed by ESC.
-      // If the javascript is terrible, sorry. I'm not a JS programmer.
-      // TODO: Figure out a way to turn off await-j mode after a timer
-      //       or after any other key is pressed.
-      'K': function(cm) {
+      // followeed by ESC, and the problem with it poluting macro recording
+      // with an extra k each time you use it to escape insert mode.
+      "'k'": function(cm) {
           cm.replaceRange('k', cm.getCursor(), cm.getCursor(), "+input");
-          cm.setOption('keyMap', 'await-j');
-          __hack__VimEscape__Waiting = true;
+          cm.setOption('keyMap', 'await-second');
+          vimGlobalState.awaitingEscapeSecondCharacter = true;
           setTimeout(
               function(){
-                  if(__hack__VimEscape__Waiting == true) {
-                      __hack__VimEscape__Waiting = false;
+                  if(vimGlobalState.awaitingEscapeSecondCharacter === true) {
+                      vimGlobalState.awaitingEscapeSecondCharacter = false;
                       cm.setOption('keyMap', 'vim-insert');
                   }
-              }, 100);
+              }, vimGlobalState.ESCSequenceTimeout);
       },
       fallthrough: ['default']
     };
 
-    CodeMirror.keyMap['await-j'] = {
-        'J': function(cm) {
-            __hack__VimEscape__Waiting = false;
+    CodeMirror.keyMap['await-second'] = {
+        "'j'": function(cm) {
+            vimGlobalState.awaitingEscapeSecondCharacter = false;
             cm.replaceRange('', {ch: cm.getCursor().ch - 1,
                                  line: cm.getCursor().line},
                             cm.getCursor(), "+input");
@@ -4072,7 +4080,7 @@
         },
         fallthrough: ['vim-insert']
     };
-      
+
     CodeMirror.keyMap['vim-replace'] = {
       'Backspace': 'goCharLeft',
       fallthrough: ['vim-insert']
