@@ -59,7 +59,6 @@
  *  8. Set up Vim to work as a keymap for CodeMirror.
  */
 
-
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("../lib/codemirror"), require("../addon/search/searchcursor"), require("../addon/dialog/dialog"), require("../addon/edit/matchbrackets.js"));
