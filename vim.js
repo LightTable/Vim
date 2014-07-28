@@ -646,7 +646,7 @@
         secondEscCharacter: 'k',
         // The timeout in milliseconds for the two-character ESC keymap should be
         // adjusted according to your typing speed to prevent false positives.
-        escSequenceTimeout: 200,
+        escSequenceTimeout: 100,
         // Used by two-character ESC keymap routines. Should not be changed from false here.
         awaitingEscapeSecondCharacter: false
       };
@@ -4036,7 +4036,6 @@
     }
 
     function firstEscCharacterHandler(ch){
-      console.log("firstEscCharacter:",ch,"enableEscKeymap",vimGlobalState.enableEscKeymap,"vimGlobalState.firstEscCharacter",vimGlobalState.firstEscCharacter)
       if(vimGlobalState.enableEscKeymap === false || vimGlobalState.firstEscCharacter !== ch){
         // This is not the handler you're looking for. Just insert as usual.
         return function(cm){
@@ -4048,7 +4047,6 @@
           cm.setOption('keyMap', 'await-second');
           vimGlobalState.awaitingEscapeSecondCharacter = true;
           setTimeout(function(){
-                console.log("two key escape timed out")
                 if(vimGlobalState.awaitingEscapeSecondCharacter === true){
                     vimGlobalState.awaitingEscapeSecondCharacter = false;
                     cm.setOption('keyMap', 'vim-insert');
@@ -4058,7 +4056,6 @@
       }
     }
     function secondEscCharacterHandler(ch){
-      console.log("secondEscCharacter:",ch,"enableEscKeymap",vimGlobalState.enableEscKeymap,"vimGlobalState.secondEscCharacter",vimGlobalState.secondEscCharacter)
       if(vimGlobalState.enableEscKeymap === false || vimGlobalState.secondEscCharacter !== ch) {
         // This is not the handler you're looking for. Just insert as usual.
         return function(cm){
