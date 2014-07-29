@@ -4064,8 +4064,11 @@
       } else {
         return function(cm) {
           vimGlobalState.awaitingEscapeSecondCharacter = false;
-          cm.replaceRange('', {ch: cm.getCursor().ch - 1, line: cm.getCursor().line},
-                          cm.getCursor(), "+input");
+          //cm.replaceRange('', {ch: cm.getCursor().ch - 1, line: cm.getCursor().line},
+          //                cm.getCursor(), "+input");
+          var vim = maybeInitVimState(cm);
+          var command = { keys: ['u'], type: 'action', action: 'undo' };
+          commandDispatcher.processAction(cm, vim, command);
           exitInsertMode(cm);
         };
       }
