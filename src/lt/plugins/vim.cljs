@@ -57,6 +57,17 @@
                       (doseq [[k v] ks]
                         (js/CodeMirror.Vim.map k v "normal"))))
 
+(behavior ::set-vim-option
+          :triggers #{:object.instant}
+          :desc "Vim: Set codemirror vim options"
+          :params [{:label "vim options"
+                    :example "{\"enableInsertModeEscKeys\" true,\n \"insertModeEscKeys\" \"kj\"}"
+                    :type :clj}]
+          :type :user
+          :reaction (fn [this ks]
+                      (doseq [[k v] ks]
+                        (js/CodeMirror.Vim.setOption k v))))
+
 (behavior ::map-keys-visual
           :triggers #{:object.instant}
           :desc "Vim: Map vim keys for visual mode"
