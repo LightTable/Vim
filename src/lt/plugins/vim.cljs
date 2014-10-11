@@ -57,6 +57,35 @@
                       (doseq [[k v] ks]
                         (js/CodeMirror.Vim.map k v "normal"))))
 
+(behavior ::two-letter-escape-sequence
+          :desc "Vim: Two-Letter Escape Sequence"
+          :params [{:label "Enable"
+                    :example "true"
+                    :type :string}
+                   {:label "Key Sequence"
+                    :example "kj"
+                    :type :string}
+                   {:label "ms Between Keys"
+                    :example "200"
+                    :type :number}]
+          :type :user
+          :exclusive true
+          :triggers #{:object.instant}
+          :reaction  (fn [this enable esc-keys timeout]
+                       (let [final {"enableInsertModeEscKeys"
+                                    (if (= enable "true")
+                                      true
+                                      false)}
+                             final (if esc-keys
+                                     (assoc final "insertModeEscKeys" esc-keys)
+                                     final)
+                             final (if (and timeout
+                                            (> timeout 0))
+                                     (assoc final "insertModeEscKeysTimeout" timeout)
+                                     final)]
+                         (doseq [[k v] final]
+                           (js/CodeMirror.Vim.setOption k v)))))
+
 (behavior ::map-keys-visual
           :triggers #{:object.instant}
           :desc "Vim: Map vim keys for visual mode"

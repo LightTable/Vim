@@ -580,9 +580,9 @@
             vimGlobalState.registerController.getRegister(registerName);
         if (register) {
           register.clear();
+          lt.objs.notifos.msg_STAR_('(recording)['+registerName+']');
           this.latestRegister = registerName;
-          this.onRecordingDone = cm.openDialog(
-              '(recording)['+registerName+']', null, {bottom:true});
+          this.onRecordingDone = function(){lt.objs.notifos.msg_STAR_('');};
           this.isRecording = true;
         }
       }
@@ -618,7 +618,9 @@
           visualMode: false,
           // If we are in visual line mode. No effect if visualMode is false.
           visualLine: false,
-          lastSelection: null
+          lastSelection: null,
+          // Used by two-character ESC keymap routines. Should not be changed from false here.
+          awaitingEscapeSecondCharacter: false
         };
       }
       return cm.state.vim;
@@ -3637,7 +3639,7 @@
               if (decimal + hex + octal > 1) { return 'Invalid arguments'; }
               number = decimal && 'decimal' || hex && 'hex' || octal && 'octal';
             }
-            if (args.eatSpace() && args.match(/\/.*\//)) { 'patterns not supported'; }
+            if (args.eatSpace() && args.match(/\/.*\//)) { return 'patterns not supported'; }
           }
         }
         var err = parseArgs();
@@ -4023,6 +4025,57 @@
       }
     }
 
+    defineOption('enableInsertModeEscKeys', true, 'boolean');
+    // Use this option to customize the two-character ESC keymap.
+    // If you want to use characters other than i j or k you'll have to add
+    // lines to the vim-insert and await-second keymaps later in this file.
+    defineOption('insertModeEscKeys', 'kj', 'string');
+    // The timeout in milliseconds for the two-character ESC keymap should be
+    // adjusted according to your typing speed to prevent false positives.
+    defineOption('insertModeEscKeysTimeout', 200, 'number');
+    function firstEscCharacterHandler(ch) {
+      return function(cm){
+        var keys = getOption('insertModeEscKeys');
+        var firstEscCharacter = keys && keys.length > 1 && keys.charAt(0);
+        if (!getOption('enableInsertModeEscKeys')|| firstEscCharacter !== ch) {
+          return CodeMirror.Pass;
+        } else {
+          cm.replaceRange(ch, cm.getCursor(), cm.getCursor(), "+input");
+          cm.setOption('keyMap', 'await-second');
+          cm.state.vim.awaitingEscapeSecondCharacter = true;
+          setTimeout(
+              function(){
+                if(cm.state.vim.awaitingEscapeSecondCharacter) {
+                    cm.state.vim.awaitingEscapeSecondCharacter = false;
+                    cm.setOption('keyMap', 'vim-insert');
+                }
+              },
+              getOption('insertModeEscKeysTimeout'));
+        }
+      };
+    }
+    function secondEscCharacterHandler(ch){
+      return function(cm) {
+        var keys = getOption('insertModeEscKeys');
+        var secondEscCharacter = keys && keys.length > 1 && keys.charAt(1);
+        if (!getOption('enableInsertModeEscKeys')|| secondEscCharacter !== ch) {
+          return CodeMirror.Pass;
+          // This is not the handler you're looking for. Just insert as usual.
+        } else {
+          if (cm.state.vim.insertMode) {
+            var lastChange = vimGlobalState.macroModeState.lastInsertModeChanges;
+            if (lastChange && lastChange.changes.length) {
+              lastChange.changes.pop();
+            }
+          }
+          cm.state.vim.awaitingEscapeSecondCharacter = false;
+          cm.replaceRange('', {ch: cm.getCursor().ch - 1, line: cm.getCursor().line},
+                          cm.getCursor(), "+input");
+          exitInsertMode(cm);
+        }
+      };
+    }
+
     CodeMirror.keyMap['vim-insert'] = {
       // TODO: override navigation keys so that Esc will cancel automatic
       // indentation from o, O, i_<CR>
@@ -4036,7 +4089,24 @@
             CodeMirror.commands.newlineAndIndent;
         fn(cm);
       },
+
+      // Hack modified from cgag's idea.
+      // https://github.com/cgag/CodeMirror/commit/ff6d554ad989863789ae729a7003e10790d16e85
+      //
+      // It works in all cases I've tried other than the
+      // rather-pathological edge-case of pressing k, immediately
+      // followeed by ESC.
+      "'i'": firstEscCharacterHandler('i'),
+      "'j'": firstEscCharacterHandler('j'),
+      "'k'": firstEscCharacterHandler('k'),
       fallthrough: ['default']
+    };
+
+    CodeMirror.keyMap['await-second'] = {
+      "'i'": secondEscCharacterHandler('i'),
+      "'j'": secondEscCharacterHandler('j'),
+      "'k'": secondEscCharacterHandler('k'),
+      fallthrough: ['vim-insert']
     };
 
     CodeMirror.keyMap['vim-replace'] = {
