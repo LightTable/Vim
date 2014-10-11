@@ -4,9 +4,13 @@ A thin wrapper around CodeMirror's vim mode that integrates it into Light Table.
 
 ## Setup
 
-Add the following to your `user.behaviors` (Ctrl-Space -> Settings: User behaviors) in the `:editor` section
+First, install the `Vim` plugin using the Plugin Manager.
+
+Then, add the following to your `user.behaviors` (Ctrl-Space -> Settings: User behaviors) in the `:editor` section
 
     (:lt.plugins.vim/activate-vim)
+
+Vim keybindings only take effect on new files. Existing files will need to be reopened.
 
 ### License
 
