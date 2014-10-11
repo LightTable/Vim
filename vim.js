@@ -580,9 +580,9 @@
             vimGlobalState.registerController.getRegister(registerName);
         if (register) {
           register.clear();
+          lt.objs.notifos.msg_STAR_('(recording)['+registerName+']');
           this.latestRegister = registerName;
-          this.onRecordingDone = cm.openDialog(
-              '(recording)['+registerName+']', null, {bottom:true});
+          this.onRecordingDone = function(){lt.objs.notifos.msg_STAR_('');};
           this.isRecording = true;
         }
       }
