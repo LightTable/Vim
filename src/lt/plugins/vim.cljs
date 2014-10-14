@@ -77,6 +77,8 @@
                       (when-not (object/has-tag? this :editor.keys.vim)
                         (make-vim-editor this))))
 
+;; Ex commands
+;; ===========
 (command {:command :vim-save
           :desc "Vim: :w"
           :exec (fn []
@@ -108,6 +110,18 @@
           :exec (fn []
                   (cmd/exec! :find.clear))})
 
+(command  {:command :vim-tab-next
+           :desc "Vim: :tabn"
+           :exec (fn []
+                   (cmd/exec! :tabs.next))})
+
+(command  {:command :vim-tab-previous
+           :desc "Vim: :tabp"
+           :exec (fn []
+                   (cmd/exec! :tabs.prev))})
+
+;; Other commands
+;; ==============
 (command {:command :vim.find
           :desc "Vim: find"
           :hidden true
