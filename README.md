@@ -12,6 +12,12 @@ Then, add the following to your `user.behaviors` (Ctrl-Space -> Settings: User b
 
 Vim keybindings only take effect on new files. Existing files will need to be reopened.
 
+## For Committers
+
+Upgrade `vim.js` with the following where `$VERSION` is a version number tag:
+
+    curl https://raw.githubusercontent.com/codemirror/CodeMirror/$VERSION/keymap/vim.js > vim.js
+
 ### License
 
 Copyright (C) 2013 Kodowa Inc.
