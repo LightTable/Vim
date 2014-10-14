@@ -5,7 +5,8 @@
             [lt.objs.editor.pool :as pool]
             [lt.objs.sidebar.command :as scmd]
             [lt.objs.command :as cmd :refer [command]]
-            [lt.objs.editor :as editor])
+            [lt.objs.editor :as editor]
+            [lt.objs.notifos :as notifos])
   (:require-macros [lt.macros :refer [behavior]]))
 
 (def mode-tags {:all #{:editor.keys.vim.insert :editor.keys.normal
@@ -146,3 +147,11 @@
                      (apply cmd/exec! (-> (.-args info)
                                           (first)
                                           (keyword)) (next (.-args info))))})
+
+;; TODO: Add support for interactive prompt
+;; Move to main LT repo once this is done
+(js/CodeMirror.defineExtension
+ "openDialog"
+ (fn [template callback options]
+   (notifos/msg* template)
+   (fn [] (notifos/msg* ""))))

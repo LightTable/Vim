@@ -5,6 +5,8 @@ goog.require('lt.objs.command');
 goog.require('lt.objs.sidebar.command');
 goog.require('lt.objs.context');
 goog.require('lt.objs.context');
+goog.require('lt.objs.notifos');
+goog.require('lt.objs.notifos');
 goog.require('lt.objs.editor.pool');
 goog.require('lt.objs.command');
 goog.require('lt.util.load');
@@ -42,45 +44,45 @@ return lt.objs.context.out_BANG_.call(null,new cljs.core.Keyword(null,"find-bar.
 }
 });
 lt.object.behavior_STAR_.call(null,new cljs.core.Keyword("lt.plugins.vim","find-bar-inactive","lt.plugins.vim/find-bar-inactive",4377718566),new cljs.core.Keyword(null,"reaction","reaction",4441361819),lt.plugins.vim.__BEH__find_bar_inactive,new cljs.core.Keyword(null,"triggers","triggers",2516997421),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"inactive","inactive",1038569437),null], null), null));
-lt.plugins.vim.__BEH__map_keys = (function __BEH__map_keys(this$,ks){var seq__7975 = cljs.core.seq.call(null,ks);var chunk__7976 = null;var count__7977 = 0;var i__7978 = 0;while(true){
-if((i__7978 < count__7977))
-{var vec__7979 = cljs.core._nth.call(null,chunk__7976,i__7978);var k = cljs.core.nth.call(null,vec__7979,0,null);var v = cljs.core.nth.call(null,vec__7979,1,null);CodeMirror.Vim.map(k,v,"normal");
+lt.plugins.vim.__BEH__map_keys = (function __BEH__map_keys(this$,ks){var seq__8119 = cljs.core.seq.call(null,ks);var chunk__8120 = null;var count__8121 = 0;var i__8122 = 0;while(true){
+if((i__8122 < count__8121))
+{var vec__8123 = cljs.core._nth.call(null,chunk__8120,i__8122);var k = cljs.core.nth.call(null,vec__8123,0,null);var v = cljs.core.nth.call(null,vec__8123,1,null);CodeMirror.Vim.map(k,v,"normal");
 {
-var G__7993 = seq__7975;
-var G__7994 = chunk__7976;
-var G__7995 = count__7977;
-var G__7996 = (i__7978 + 1);
-seq__7975 = G__7993;
-chunk__7976 = G__7994;
-count__7977 = G__7995;
-i__7978 = G__7996;
+var G__8137 = seq__8119;
+var G__8138 = chunk__8120;
+var G__8139 = count__8121;
+var G__8140 = (i__8122 + 1);
+seq__8119 = G__8137;
+chunk__8120 = G__8138;
+count__8121 = G__8139;
+i__8122 = G__8140;
 continue;
 }
 } else
-{var temp__4092__auto__ = cljs.core.seq.call(null,seq__7975);if(temp__4092__auto__)
-{var seq__7975__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__7975__$1))
-{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__7975__$1);{
-var G__7997 = cljs.core.chunk_rest.call(null,seq__7975__$1);
-var G__7998 = c__7112__auto__;
-var G__7999 = cljs.core.count.call(null,c__7112__auto__);
-var G__8000 = 0;
-seq__7975 = G__7997;
-chunk__7976 = G__7998;
-count__7977 = G__7999;
-i__7978 = G__8000;
+{var temp__4092__auto__ = cljs.core.seq.call(null,seq__8119);if(temp__4092__auto__)
+{var seq__8119__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__8119__$1))
+{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__8119__$1);{
+var G__8141 = cljs.core.chunk_rest.call(null,seq__8119__$1);
+var G__8142 = c__7112__auto__;
+var G__8143 = cljs.core.count.call(null,c__7112__auto__);
+var G__8144 = 0;
+seq__8119 = G__8141;
+chunk__8120 = G__8142;
+count__8121 = G__8143;
+i__8122 = G__8144;
 continue;
 }
 } else
-{var vec__7980 = cljs.core.first.call(null,seq__7975__$1);var k = cljs.core.nth.call(null,vec__7980,0,null);var v = cljs.core.nth.call(null,vec__7980,1,null);CodeMirror.Vim.map(k,v,"normal");
+{var vec__8124 = cljs.core.first.call(null,seq__8119__$1);var k = cljs.core.nth.call(null,vec__8124,0,null);var v = cljs.core.nth.call(null,vec__8124,1,null);CodeMirror.Vim.map(k,v,"normal");
 {
-var G__8001 = cljs.core.next.call(null,seq__7975__$1);
-var G__8002 = null;
-var G__8003 = 0;
-var G__8004 = 0;
-seq__7975 = G__8001;
-chunk__7976 = G__8002;
-count__7977 = G__8003;
-i__7978 = G__8004;
+var G__8145 = cljs.core.next.call(null,seq__8119__$1);
+var G__8146 = null;
+var G__8147 = 0;
+var G__8148 = 0;
+seq__8119 = G__8145;
+chunk__8120 = G__8146;
+count__8121 = G__8147;
+i__8122 = G__8148;
 continue;
 }
 }
@@ -92,45 +94,45 @@ break;
 }
 });
 lt.object.behavior_STAR_.call(null,new cljs.core.Keyword("lt.plugins.vim","map-keys","lt.plugins.vim/map-keys",2875450346),new cljs.core.Keyword(null,"reaction","reaction",4441361819),lt.plugins.vim.__BEH__map_keys,new cljs.core.Keyword(null,"desc","desc",1016984067),"Vim: Map vim keys for normal mode",new cljs.core.Keyword(null,"params","params",4313443576),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"label","label",1116631654),"keys",new cljs.core.Keyword(null,"example","example",3985900764),"{\"<BS>\" \"<PageUp>\",\n \"<Space>\" \"<PageDown>\"}",new cljs.core.Keyword(null,"type","type",1017479852),new cljs.core.Keyword(null,"clj","clj",1014002835)], null)], null),new cljs.core.Keyword(null,"triggers","triggers",2516997421),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"object.instant","object.instant",773332388),null], null), null),new cljs.core.Keyword(null,"type","type",1017479852),new cljs.core.Keyword(null,"user","user",1017503549));
-lt.plugins.vim.__BEH__map_keys_visual = (function __BEH__map_keys_visual(this$,ks){var seq__7987 = cljs.core.seq.call(null,ks);var chunk__7988 = null;var count__7989 = 0;var i__7990 = 0;while(true){
-if((i__7990 < count__7989))
-{var vec__7991 = cljs.core._nth.call(null,chunk__7988,i__7990);var k = cljs.core.nth.call(null,vec__7991,0,null);var v = cljs.core.nth.call(null,vec__7991,1,null);CodeMirror.Vim.map(k,v,"visual");
+lt.plugins.vim.__BEH__map_keys_visual = (function __BEH__map_keys_visual(this$,ks){var seq__8131 = cljs.core.seq.call(null,ks);var chunk__8132 = null;var count__8133 = 0;var i__8134 = 0;while(true){
+if((i__8134 < count__8133))
+{var vec__8135 = cljs.core._nth.call(null,chunk__8132,i__8134);var k = cljs.core.nth.call(null,vec__8135,0,null);var v = cljs.core.nth.call(null,vec__8135,1,null);CodeMirror.Vim.map(k,v,"visual");
 {
-var G__8005 = seq__7987;
-var G__8006 = chunk__7988;
-var G__8007 = count__7989;
-var G__8008 = (i__7990 + 1);
-seq__7987 = G__8005;
-chunk__7988 = G__8006;
-count__7989 = G__8007;
-i__7990 = G__8008;
+var G__8149 = seq__8131;
+var G__8150 = chunk__8132;
+var G__8151 = count__8133;
+var G__8152 = (i__8134 + 1);
+seq__8131 = G__8149;
+chunk__8132 = G__8150;
+count__8133 = G__8151;
+i__8134 = G__8152;
 continue;
 }
 } else
-{var temp__4092__auto__ = cljs.core.seq.call(null,seq__7987);if(temp__4092__auto__)
-{var seq__7987__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__7987__$1))
-{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__7987__$1);{
-var G__8009 = cljs.core.chunk_rest.call(null,seq__7987__$1);
-var G__8010 = c__7112__auto__;
-var G__8011 = cljs.core.count.call(null,c__7112__auto__);
-var G__8012 = 0;
-seq__7987 = G__8009;
-chunk__7988 = G__8010;
-count__7989 = G__8011;
-i__7990 = G__8012;
+{var temp__4092__auto__ = cljs.core.seq.call(null,seq__8131);if(temp__4092__auto__)
+{var seq__8131__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__8131__$1))
+{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__8131__$1);{
+var G__8153 = cljs.core.chunk_rest.call(null,seq__8131__$1);
+var G__8154 = c__7112__auto__;
+var G__8155 = cljs.core.count.call(null,c__7112__auto__);
+var G__8156 = 0;
+seq__8131 = G__8153;
+chunk__8132 = G__8154;
+count__8133 = G__8155;
+i__8134 = G__8156;
 continue;
 }
 } else
-{var vec__7992 = cljs.core.first.call(null,seq__7987__$1);var k = cljs.core.nth.call(null,vec__7992,0,null);var v = cljs.core.nth.call(null,vec__7992,1,null);CodeMirror.Vim.map(k,v,"visual");
+{var vec__8136 = cljs.core.first.call(null,seq__8131__$1);var k = cljs.core.nth.call(null,vec__8136,0,null);var v = cljs.core.nth.call(null,vec__8136,1,null);CodeMirror.Vim.map(k,v,"visual");
 {
-var G__8013 = cljs.core.next.call(null,seq__7987__$1);
-var G__8014 = null;
-var G__8015 = 0;
-var G__8016 = 0;
-seq__7987 = G__8013;
-chunk__7988 = G__8014;
-count__7989 = G__8015;
-i__7990 = G__8016;
+var G__8157 = cljs.core.next.call(null,seq__8131__$1);
+var G__8158 = null;
+var G__8159 = 0;
+var G__8160 = 0;
+seq__8131 = G__8157;
+chunk__8132 = G__8158;
+count__8133 = G__8159;
+i__8134 = G__8160;
 continue;
 }
 }
@@ -182,6 +184,10 @@ lt.plugins.vim.ex_command = (function ex_command(cmd){return CodeMirror.Vim.defi
 });
 lt.plugins.vim.ex_command.call(null,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"name","name",1017277949),"ltexec",new cljs.core.Keyword(null,"func","func",1017058870),(function (cm,info){return cljs.core.apply.call(null,lt.objs.command.exec_BANG_,cljs.core.keyword.call(null,cljs.core.first.call(null,info.args)),cljs.core.next.call(null,info.args));
 })], null));
+CodeMirror.defineExtension("openDialog",(function (template,callback,options){lt.objs.notifos.msg_STAR_.call(null,template);
+return (function (){return lt.objs.notifos.msg_STAR_.call(null,"");
+});
+}));
 }
 
 //# sourceMappingURL=vim_compiled.js.map
