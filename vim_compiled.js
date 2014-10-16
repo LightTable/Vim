@@ -44,45 +44,45 @@ return lt.objs.context.out_BANG_.call(null,new cljs.core.Keyword(null,"find-bar.
 }
 });
 lt.object.behavior_STAR_.call(null,new cljs.core.Keyword("lt.plugins.vim","find-bar-inactive","lt.plugins.vim/find-bar-inactive",4377718566),new cljs.core.Keyword(null,"reaction","reaction",4441361819),lt.plugins.vim.__BEH__find_bar_inactive,new cljs.core.Keyword(null,"triggers","triggers",2516997421),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"inactive","inactive",1038569437),null], null), null));
-lt.plugins.vim.__BEH__map_keys = (function __BEH__map_keys(this$,ks){var seq__8119 = cljs.core.seq.call(null,ks);var chunk__8120 = null;var count__8121 = 0;var i__8122 = 0;while(true){
-if((i__8122 < count__8121))
-{var vec__8123 = cljs.core._nth.call(null,chunk__8120,i__8122);var k = cljs.core.nth.call(null,vec__8123,0,null);var v = cljs.core.nth.call(null,vec__8123,1,null);CodeMirror.Vim.map(k,v,"normal");
+lt.plugins.vim.__BEH__map_keys = (function __BEH__map_keys(this$,ks){var seq__7845 = cljs.core.seq.call(null,ks);var chunk__7846 = null;var count__7847 = 0;var i__7848 = 0;while(true){
+if((i__7848 < count__7847))
+{var vec__7849 = cljs.core._nth.call(null,chunk__7846,i__7848);var k = cljs.core.nth.call(null,vec__7849,0,null);var v = cljs.core.nth.call(null,vec__7849,1,null);CodeMirror.Vim.map(k,v,"normal");
 {
-var G__8137 = seq__8119;
-var G__8138 = chunk__8120;
-var G__8139 = count__8121;
-var G__8140 = (i__8122 + 1);
-seq__8119 = G__8137;
-chunk__8120 = G__8138;
-count__8121 = G__8139;
-i__8122 = G__8140;
+var G__7885 = seq__7845;
+var G__7886 = chunk__7846;
+var G__7887 = count__7847;
+var G__7888 = (i__7848 + 1);
+seq__7845 = G__7885;
+chunk__7846 = G__7886;
+count__7847 = G__7887;
+i__7848 = G__7888;
 continue;
 }
 } else
-{var temp__4092__auto__ = cljs.core.seq.call(null,seq__8119);if(temp__4092__auto__)
-{var seq__8119__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__8119__$1))
-{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__8119__$1);{
-var G__8141 = cljs.core.chunk_rest.call(null,seq__8119__$1);
-var G__8142 = c__7112__auto__;
-var G__8143 = cljs.core.count.call(null,c__7112__auto__);
-var G__8144 = 0;
-seq__8119 = G__8141;
-chunk__8120 = G__8142;
-count__8121 = G__8143;
-i__8122 = G__8144;
+{var temp__4092__auto__ = cljs.core.seq.call(null,seq__7845);if(temp__4092__auto__)
+{var seq__7845__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__7845__$1))
+{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__7845__$1);{
+var G__7889 = cljs.core.chunk_rest.call(null,seq__7845__$1);
+var G__7890 = c__7112__auto__;
+var G__7891 = cljs.core.count.call(null,c__7112__auto__);
+var G__7892 = 0;
+seq__7845 = G__7889;
+chunk__7846 = G__7890;
+count__7847 = G__7891;
+i__7848 = G__7892;
 continue;
 }
 } else
-{var vec__8124 = cljs.core.first.call(null,seq__8119__$1);var k = cljs.core.nth.call(null,vec__8124,0,null);var v = cljs.core.nth.call(null,vec__8124,1,null);CodeMirror.Vim.map(k,v,"normal");
+{var vec__7850 = cljs.core.first.call(null,seq__7845__$1);var k = cljs.core.nth.call(null,vec__7850,0,null);var v = cljs.core.nth.call(null,vec__7850,1,null);CodeMirror.Vim.map(k,v,"normal");
 {
-var G__8145 = cljs.core.next.call(null,seq__8119__$1);
-var G__8146 = null;
-var G__8147 = 0;
-var G__8148 = 0;
-seq__8119 = G__8145;
-chunk__8120 = G__8146;
-count__8121 = G__8147;
-i__8122 = G__8148;
+var G__7893 = cljs.core.next.call(null,seq__7845__$1);
+var G__7894 = null;
+var G__7895 = 0;
+var G__7896 = 0;
+seq__7845 = G__7893;
+chunk__7846 = G__7894;
+count__7847 = G__7895;
+i__7848 = G__7896;
 continue;
 }
 }
@@ -94,45 +94,95 @@ break;
 }
 });
 lt.object.behavior_STAR_.call(null,new cljs.core.Keyword("lt.plugins.vim","map-keys","lt.plugins.vim/map-keys",2875450346),new cljs.core.Keyword(null,"reaction","reaction",4441361819),lt.plugins.vim.__BEH__map_keys,new cljs.core.Keyword(null,"desc","desc",1016984067),"Vim: Map vim keys for normal mode",new cljs.core.Keyword(null,"params","params",4313443576),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"label","label",1116631654),"keys",new cljs.core.Keyword(null,"example","example",3985900764),"{\"<BS>\" \"<PageUp>\",\n \"<Space>\" \"<PageDown>\"}",new cljs.core.Keyword(null,"type","type",1017479852),new cljs.core.Keyword(null,"clj","clj",1014002835)], null)], null),new cljs.core.Keyword(null,"triggers","triggers",2516997421),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"object.instant","object.instant",773332388),null], null), null),new cljs.core.Keyword(null,"type","type",1017479852),new cljs.core.Keyword(null,"user","user",1017503549));
-lt.plugins.vim.__BEH__map_keys_visual = (function __BEH__map_keys_visual(this$,ks){var seq__8131 = cljs.core.seq.call(null,ks);var chunk__8132 = null;var count__8133 = 0;var i__8134 = 0;while(true){
-if((i__8134 < count__8133))
-{var vec__8135 = cljs.core._nth.call(null,chunk__8132,i__8134);var k = cljs.core.nth.call(null,vec__8135,0,null);var v = cljs.core.nth.call(null,vec__8135,1,null);CodeMirror.Vim.map(k,v,"visual");
+lt.plugins.vim.__BEH__set_option = (function __BEH__set_option(this$,ks){var seq__7857 = cljs.core.seq.call(null,ks);var chunk__7858 = null;var count__7859 = 0;var i__7860 = 0;while(true){
+if((i__7860 < count__7859))
+{var vec__7861 = cljs.core._nth.call(null,chunk__7858,i__7860);var k = cljs.core.nth.call(null,vec__7861,0,null);var v = cljs.core.nth.call(null,vec__7861,1,null);CodeMirror.Vim.setOption(k,v);
 {
-var G__8149 = seq__8131;
-var G__8150 = chunk__8132;
-var G__8151 = count__8133;
-var G__8152 = (i__8134 + 1);
-seq__8131 = G__8149;
-chunk__8132 = G__8150;
-count__8133 = G__8151;
-i__8134 = G__8152;
+var G__7897 = seq__7857;
+var G__7898 = chunk__7858;
+var G__7899 = count__7859;
+var G__7900 = (i__7860 + 1);
+seq__7857 = G__7897;
+chunk__7858 = G__7898;
+count__7859 = G__7899;
+i__7860 = G__7900;
 continue;
 }
 } else
-{var temp__4092__auto__ = cljs.core.seq.call(null,seq__8131);if(temp__4092__auto__)
-{var seq__8131__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__8131__$1))
-{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__8131__$1);{
-var G__8153 = cljs.core.chunk_rest.call(null,seq__8131__$1);
-var G__8154 = c__7112__auto__;
-var G__8155 = cljs.core.count.call(null,c__7112__auto__);
-var G__8156 = 0;
-seq__8131 = G__8153;
-chunk__8132 = G__8154;
-count__8133 = G__8155;
-i__8134 = G__8156;
+{var temp__4092__auto__ = cljs.core.seq.call(null,seq__7857);if(temp__4092__auto__)
+{var seq__7857__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__7857__$1))
+{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__7857__$1);{
+var G__7901 = cljs.core.chunk_rest.call(null,seq__7857__$1);
+var G__7902 = c__7112__auto__;
+var G__7903 = cljs.core.count.call(null,c__7112__auto__);
+var G__7904 = 0;
+seq__7857 = G__7901;
+chunk__7858 = G__7902;
+count__7859 = G__7903;
+i__7860 = G__7904;
 continue;
 }
 } else
-{var vec__8136 = cljs.core.first.call(null,seq__8131__$1);var k = cljs.core.nth.call(null,vec__8136,0,null);var v = cljs.core.nth.call(null,vec__8136,1,null);CodeMirror.Vim.map(k,v,"visual");
+{var vec__7862 = cljs.core.first.call(null,seq__7857__$1);var k = cljs.core.nth.call(null,vec__7862,0,null);var v = cljs.core.nth.call(null,vec__7862,1,null);CodeMirror.Vim.setOption(k,v);
 {
-var G__8157 = cljs.core.next.call(null,seq__8131__$1);
-var G__8158 = null;
-var G__8159 = 0;
-var G__8160 = 0;
-seq__8131 = G__8157;
-chunk__8132 = G__8158;
-count__8133 = G__8159;
-i__8134 = G__8160;
+var G__7905 = cljs.core.next.call(null,seq__7857__$1);
+var G__7906 = null;
+var G__7907 = 0;
+var G__7908 = 0;
+seq__7857 = G__7905;
+chunk__7858 = G__7906;
+count__7859 = G__7907;
+i__7860 = G__7908;
+continue;
+}
+}
+} else
+{return null;
+}
+}
+break;
+}
+});
+lt.object.behavior_STAR_.call(null,new cljs.core.Keyword("lt.plugins.vim","set-option","lt.plugins.vim/set-option",1506092141),new cljs.core.Keyword(null,"reaction","reaction",4441361819),lt.plugins.vim.__BEH__set_option,new cljs.core.Keyword(null,"desc","desc",1016984067),"Vim: Set codemirror vim options",new cljs.core.Keyword(null,"params","params",4313443576),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"label","label",1116631654),"vim options",new cljs.core.Keyword(null,"example","example",3985900764),"{\"enableInsertModeEscKeys\" true,\n \"insertModeEscKeys\" \"jk\"}",new cljs.core.Keyword(null,"type","type",1017479852),new cljs.core.Keyword(null,"clj","clj",1014002835)], null)], null),new cljs.core.Keyword(null,"triggers","triggers",2516997421),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"object.instant","object.instant",773332388),null], null), null),new cljs.core.Keyword(null,"type","type",1017479852),new cljs.core.Keyword(null,"user","user",1017503549));
+lt.plugins.vim.__BEH__map_keys_visual = (function __BEH__map_keys_visual(this$,ks){var seq__7869 = cljs.core.seq.call(null,ks);var chunk__7870 = null;var count__7871 = 0;var i__7872 = 0;while(true){
+if((i__7872 < count__7871))
+{var vec__7873 = cljs.core._nth.call(null,chunk__7870,i__7872);var k = cljs.core.nth.call(null,vec__7873,0,null);var v = cljs.core.nth.call(null,vec__7873,1,null);CodeMirror.Vim.map(k,v,"visual");
+{
+var G__7909 = seq__7869;
+var G__7910 = chunk__7870;
+var G__7911 = count__7871;
+var G__7912 = (i__7872 + 1);
+seq__7869 = G__7909;
+chunk__7870 = G__7910;
+count__7871 = G__7911;
+i__7872 = G__7912;
+continue;
+}
+} else
+{var temp__4092__auto__ = cljs.core.seq.call(null,seq__7869);if(temp__4092__auto__)
+{var seq__7869__$1 = temp__4092__auto__;if(cljs.core.chunked_seq_QMARK_.call(null,seq__7869__$1))
+{var c__7112__auto__ = cljs.core.chunk_first.call(null,seq__7869__$1);{
+var G__7913 = cljs.core.chunk_rest.call(null,seq__7869__$1);
+var G__7914 = c__7112__auto__;
+var G__7915 = cljs.core.count.call(null,c__7112__auto__);
+var G__7916 = 0;
+seq__7869 = G__7913;
+chunk__7870 = G__7914;
+count__7871 = G__7915;
+i__7872 = G__7916;
+continue;
+}
+} else
+{var vec__7874 = cljs.core.first.call(null,seq__7869__$1);var k = cljs.core.nth.call(null,vec__7874,0,null);var v = cljs.core.nth.call(null,vec__7874,1,null);CodeMirror.Vim.map(k,v,"visual");
+{
+var G__7917 = cljs.core.next.call(null,seq__7869__$1);
+var G__7918 = null;
+var G__7919 = 0;
+var G__7920 = 0;
+seq__7869 = G__7917;
+chunk__7870 = G__7918;
+count__7871 = G__7919;
+i__7872 = G__7920;
 continue;
 }
 }
