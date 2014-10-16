@@ -58,7 +58,7 @@
                       (doseq [[k v] ks]
                         (js/CodeMirror.Vim.map k v "normal"))))
 
-(behavior ::set-option
+(behavior ::set-options
           :triggers #{:object.instant}
           :desc "Vim: Set codemirror vim options"
           :params [{:label "vim options"
