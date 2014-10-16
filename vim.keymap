@@ -1,4 +1,4 @@
 {:+ {:find-bar.vim {"enter" [:find.hide]}
      :editor.keys.vim {"ctrl-r" [:passthrough]}
-     :editor.keys.vim.normal {"ctrl-d"  [:passthrough]
-                              "pmeta-d" [:editor.doc.toggle]}}}
+     :editor.keys.vim.normal {"ctrl-d" [:passthrough]
+                              "K" [:editor.doc.toggle]}}}
