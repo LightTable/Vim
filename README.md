@@ -38,6 +38,8 @@ Upgrade `vim.js` with the following where `$VERSION` is a version number tag:
 
     curl https://raw.githubusercontent.com/codemirror/CodeMirror/$VERSION/keymap/vim.js > vim.js
 
+`vim.js` is currently on CodeMirror version 4.6.0.
+
 ### License
 
 Copyright (C) 2013 Kodowa Inc.
