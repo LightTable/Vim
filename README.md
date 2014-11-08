@@ -44,4 +44,4 @@ Upgrade `vim.js` with the following where `$VERSION` is a version number tag:
 
 Copyright (C) 2013 Kodowa Inc.
 
-Distributed under the GPLv3, see license.md for the full text.
+Distributed under the MIT license, see license.md for the full text.
