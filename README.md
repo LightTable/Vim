@@ -2,6 +2,8 @@
 
 A thin wrapper around CodeMirror's vim mode that integrates it into Light Table.
 
+For additional Vim-like functionality, see [the guide for Vim Users](https://github.com/LightTable/LightTable/wiki/For-Vim-Users).
+
 ## Setup
 
 First, install the `Vim` plugin using the Plugin Manager.
