@@ -1,5 +1,3 @@
-Like with Clojure and most other big OSS projects, we have a [Contributor's Agreement](https://docs.google.com/a/kodowa.com/forms/d/1ME_PT6qLKUcALUEz1h1yerLF7vP_Rnohpb9RvMLDALg/viewform) that you have to agree to before we can merge. It's a simple adaptation of Twitter's own Contributor's Agreement and just says that by signing this you can't take the code back from us or sue us into oblivion for using it later.
-
 ## Help
 
 For questions and community discussion, please drop them in the [Light Table Google group](https://groups.google.com/forum/#!forum/light-table-discussion).
