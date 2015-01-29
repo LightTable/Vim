@@ -10,7 +10,7 @@ First, install the `Vim` plugin using the Plugin Manager.
 
 Then, add the following to your `user.behaviors` (Ctrl-Space -> Settings: User behaviors) in the `:editor` section
 
-    (:lt.plugins.vim/activate-vim)
+    [:editor :lt.plugins.vim/activate-vim]
 
 Vim keybindings only take effect on new files. Existing files will need to be reopened.
 
@@ -20,11 +20,7 @@ To map keys to normal mode, add a `:lt.plugins.vim/map-keys` behavior under your
 For example:
 
 ```clojurescript
-  ...
-  {:app [
-     ...
-    (:lt.plugins.vim/map-keys {"j" "gj"
-                               "k" "gk"})]}
+[:app :lt.plugins.vim/map-keys {"j" "gj" "k" "gk"}]
 ```
 
 For a thorough example, [see this config](https://github.com/cldwalker/ltfiles/blob/bf5ce36188219622796b794f7dcf7be4d255dd36/settings/user.behaviors#L9-L120)
