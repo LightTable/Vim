@@ -8,7 +8,7 @@ For additional Vim-like functionality, see [the guide for Vim Users](https://git
 
 First, install the `Vim` plugin using the Plugin Manager.
 
-Then, add the following to your `user.behaviors` (Ctrl-Space -> Settings: User behaviors) in the `:editor` section
+Then, add the following to your `user.behaviors` (Ctrl-Space -> Settings: User behaviors):
 
     [:editor :lt.plugins.vim/activate-vim]
 
@@ -16,8 +16,7 @@ Vim keybindings only take effect on new files. Existing files will need to be re
 
 ## Mapping Keys
 
-To map keys to normal mode, add a `:lt.plugins.vim/map-keys` behavior under your `:app` section.
-For example:
+To map keys to normal mode, add a `:lt.plugins.vim/map-keys` behavior:
 
 ```clojurescript
 [:app :lt.plugins.vim/map-keys {"j" "gj" "k" "gk"}]
