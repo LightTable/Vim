@@ -1,10 +1,12 @@
-{:+ {:app [(:lt.objs.plugins/load-js ["vim.js" "vim_compiled.js"])
-           (:lt.objs.plugins/load-keymap "vim.keymap")
-           (:lt.plugins.vim/map-keys {":" ":ltexec vim.ex"
-                                      "?" ":ltexec vim.find true"
-                                      "/" ":ltexec vim.find"
-                                      "n" ":ltexec find.next"
-                                      "N" ":ltexec find.prev"
-                                      "=" ":ltexec smart-indent-selection"})]
-     :editor.keys.vim [:lt.plugins.vim/mode-change]
-     :find-bar [:lt.plugins.vim/find-bar-inactive]}}
+[
+ [:app :lt.objs.plugins/load-js ["vim.js" "vim_compiled.js"]]
+ [:app :lt.objs.plugins/load-keymap "vim.keymap"]
+ [:app :lt.plugins.vim/map-keys {"N" ":ltexec find.prev"
+                                 "n" ":ltexec find.next"
+                                 "/" ":ltexec vim.find"
+                                 ":" ":ltexec vim.ex"
+                                 "=" ":ltexec smart-indent-selection"
+                                 "?" ":ltexec vim.find true"}]
+ [:editor.keys.vim :lt.plugins.vim/mode-change]
+ [:find-bar :lt.plugins.vim/find-bar-inactive]
+]
