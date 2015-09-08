@@ -7,11 +7,6 @@ For additional Vim-like functionality, see [the guide for Vim Users](https://git
 ## Setup
 
 First, install the `Vim` plugin using the Plugin Manager.
-
-Then, add the following to your `user.behaviors` (Ctrl-Space -> Settings: User behaviors):
-
-    [:editor :lt.plugins.vim/activate-vim]
-
 Vim keybindings only take effect on new files. Existing files will need to be reopened.
 
 ## Mapping Keys
