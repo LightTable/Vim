@@ -6,7 +6,7 @@ For additional Vim-like functionality, see [the guide for Vim Users](https://git
 
 ## Setup
 
-Install the `Vim` plugin using the Plugin Manager and then run the command `App: Reload behaviors`.
+Install the `Vim` plugin using the Plugin Manager.
 Vim keybindings only take effect on new files. Existing files will need to be reopened.
 
 ## Mapping Keys
