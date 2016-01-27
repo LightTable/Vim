@@ -124,15 +124,20 @@
           :exec (fn []
                   (cmd/exec! :find.clear))})
 
-(command  {:command :vim-tab-next
-           :desc "Vim: :tabn"
-           :exec (fn []
-                   (cmd/exec! :tabs.next))})
+(command {:command :vim-tab-next
+          :desc "Vim: :tabn"
+          :exec (fn []
+                  (cmd/exec! :tabs.next))})
 
-(command  {:command :vim-tab-previous
-           :desc "Vim: :tabp"
-           :exec (fn []
-                   (cmd/exec! :tabs.prev))})
+(command {:command :vim-tab-previous
+          :desc "Vim: :tabp"
+          :exec (fn []
+                  (cmd/exec! :tabs.prev))})
+
+(command {:command :vim-quit-all
+          :desc "Vim: :qa"
+          :exec (fn []
+                  (cmd/exec! :quit))})
 
 ;; Other commands
 ;; ==============
