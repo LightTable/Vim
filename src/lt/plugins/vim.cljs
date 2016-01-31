@@ -1,11 +1,13 @@
 (ns lt.plugins.vim
   (:require [lt.object :as object]
             [lt.objs.context :as ctx]
+            [lt.objs.keyboard :as kb]
             [lt.util.load :as load]
             [lt.objs.editor.pool :as pool]
             [lt.objs.sidebar.command :as scmd]
             [lt.objs.command :as cmd :refer [command]]
             [lt.objs.editor :as editor]
+            [lt.objs.console :as console]
             [lt.objs.notifos :as notifos])
   (:require-macros [lt.macros :refer [behavior]]))
 
@@ -58,6 +60,7 @@
                     :type :clj}]
           :type :user
           :reaction (fn [this ks]
+                      (console/error (str ::map-keys " is deprecated and will be removed in 0.3.0. Instead define these keys in a keymap under the :editor.keys.vim.normal.cm tag"))
                       (doseq [[k v] ks]
                         (js/CodeMirror.Vim.map k v "normal"))))
 
@@ -80,6 +83,7 @@
                     :type :clj}]
           :type :user
           :reaction (fn [this ks]
+                      (console/error (str ::map-keys-visual " is deprecated and will be removed in 0.3.0. Instead define these keys in a keymap under the :editor.keys.vim.visual.cm tag"))
                       (doseq [[k v] ks]
                         (js/CodeMirror.Vim.map k v "visual"))))
 
@@ -91,6 +95,27 @@
           :reaction (fn [this]
                       (when-not (object/has-tag? this :editor.keys.vim)
                         (make-vim-editor this))))
+
+
+(behavior ::load-cm-normal-keys
+          :triggers #{:app.keys.load}
+          :desc "Load CodeMirror normal keys into vim keymap"
+          :type :user
+          :reaction (fn [this]
+                      (doseq [[k v] (:editor.keys.vim.normal.cm @kb/keys)]
+                        (js/CodeMirror.Vim.map k
+                                               (if (string? (first v)) (first v) (str ":lt_normal_key " k))
+                                               "normal"))))
+
+(behavior ::load-cm-visual-keys
+          :triggers #{:app.keys.load}
+          :desc "Load CodeMirror visual keys into vim keymap"
+          :type :user
+          :reaction (fn [this]
+                      (doseq [[k v] (:editor.keys.vim.visual.cm @kb/keys)]
+                        (js/CodeMirror.Vim.map k
+                                               (if (string? (first v)) (first v) (str ":lt_visual_key " k))
+                                               "visual"))))
 
 ;; Ex commands
 ;; ===========
@@ -166,6 +191,20 @@
                      (apply cmd/exec! (-> (.-args info)
                                           (first)
                                           (keyword)) (next (.-args info))))})
+
+(defn run-commands [cmds]
+  (doseq [cmd cmds]
+    (if (sequential? cmd)
+      (apply cmd/exec! cmd)
+      (cmd/exec! cmd))))
+
+(ex-command {:name "lt_normal_key"
+             :func (fn [cm info]
+                     (run-commands (get (:editor.keys.vim.normal.cm @kb/keys) (.trim (.-argString info)))))})
+
+(ex-command {:name "lt_visual_key"
+             :func (fn [cm info]
+                     (run-commands (get (:editor.keys.vim.visual.cm @kb/keys) (.trim (.-argString info)))))})
 
 ;; TODO: Add support for interactive prompt
 ;; Move to main LT repo once this is done
