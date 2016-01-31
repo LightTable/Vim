@@ -57,7 +57,7 @@
                     :type :clj}]
           :type :user
           :reaction (fn [this ks]
-                      (console/error (str ::map-keys " is deprecated and will be removed in 0.3.0. Instead define these keys under the :editor.keys.vim.normal.cm tag"))
+                      (console/error (str ::map-keys " is deprecated and will be removed in 0.3.0. Instead define these keys in a keymap under the :editor.keys.vim.normal.cm tag"))
                       (doseq [[k v] ks]
                         (js/CodeMirror.Vim.map k v "normal"))))
 
@@ -80,6 +80,7 @@
                     :type :clj}]
           :type :user
           :reaction (fn [this ks]
+                      (console/error (str ::map-keys-visual " is deprecated and will be removed in 0.3.0. Instead define these keys in a keymap under the :editor.keys.vim.visual.cm tag"))
                       (doseq [[k v] ks]
                         (js/CodeMirror.Vim.map k v "visual"))))
 
@@ -92,15 +93,26 @@
                       (when-not (object/has-tag? this :editor.keys.vim)
                         (make-vim-editor this))))
 
-(behavior ::load-cm-keys
+
+(behavior ::load-cm-normal-keys
           :triggers #{:app.keys.load}
-          :desc "Load CodeMirror keys into vim keymap"
+          :desc "Load CodeMirror normal keys into vim keymap"
           :type :user
           :reaction (fn [this]
                       (doseq [[k v] (:editor.keys.vim.normal.cm @kb/keys)]
                         (js/CodeMirror.Vim.map k
                                                (if (string? (first v)) (first v) (str ":lt_normal_key " k))
                                                "normal"))))
+
+(behavior ::load-cm-visual-keys
+          :triggers #{:app.keys.load}
+          :desc "Load CodeMirror visual keys into vim keymap"
+          :type :user
+          :reaction (fn [this]
+                      (doseq [[k v] (:editor.keys.vim.visual.cm @kb/keys)]
+                        (js/CodeMirror.Vim.map k
+                                               (if (string? (first v)) (first v) (str ":lt_visual_key " k))
+                                               "visual"))))
 
 ;; Ex commands
 ;; ===========
@@ -177,12 +189,19 @@
                                           (first)
                                           (keyword)) (next (.-args info))))})
 
+(defn run-commands [cmds]
+  (doseq [cmd cmds]
+    (if (sequential? cmd)
+      (apply cmd/exec! cmd)
+      (cmd/exec! cmd))))
+
 (ex-command {:name "lt_normal_key"
              :func (fn [cm info]
-                     (doseq [cmd-group (get (:editor.keys.vim.normal.cm @kb/keys) (.trim (.-argString info)))]
-                       (if (sequential? cmd-group)
-                         (apply cmd/exec! cmd-group)
-                         (cmd/exec! cmd-group))))})
+                     (run-commands (get (:editor.keys.vim.normal.cm @kb/keys) (.trim (.-argString info)))))})
+
+(ex-command {:name "lt_visual_key"
+             :func (fn [cm info]
+                     (run-commands (get (:editor.keys.vim.visual.cm @kb/keys) (.trim (.-argString info)))))})
 
 ;; TODO: Add support for interactive prompt
 ;; Move to main LT repo once this is done
