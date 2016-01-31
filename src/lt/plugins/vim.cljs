@@ -24,6 +24,9 @@
 
 (defn make-vim-editor [ed]
   (editor/set-options ed {:keyMap "vim"})
+  ;; TODO: Remove disableInput once we're on a modern version of Vim mode
+  ;; See https://github.com/codemirror/CodeMirror/issues/2061
+  (editor/set-options ed {:disableInput true})
   (object/add-tags ed [:editor.keys.vim])
   (editor/on ed "vim-mode-change" (mode-change-listener ed))
   (object/raise ed :mode-change "normal"))
