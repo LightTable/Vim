@@ -1,10 +1,11 @@
 ## 0.2.1
 
-* Normal and visual keys can be defined in .keymap instead of .behaviors
+* Normal and visual keys can now be defined in .keymap instead of .behaviors
   * Use :editor.keys.vim.normal.cm tag in keymap instead of deprecated lt.plugins.vim/map-keys behavior
     For example, `[:app :lt.plugins.vim/map-keys {"j" "gj" "k" "gk"}]` in a behaviors file,
     is `[:editor.keys.vim.normal.cm "j" "gj"] [:editor.keys.vim.normal.cm "k" "gk"]` in a keymap file.
   * Use :editor.keys.vim.visual.cm tag in keymap instead of deprecated lt.plugins.vim/map-keys-visual behavior
+* Fix normal mode interacting with autoclose-brackets behavior and inserting paired characters
 * Add :qa ex command
 
 ## 0.2.0
