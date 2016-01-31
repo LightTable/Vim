@@ -1,6 +1,7 @@
 [
  [:app :lt.objs.plugins/load-js ["vim.js" "vim_compiled.js"]]
  [:app :lt.objs.plugins/load-keymap "vim.keymap"]
+ [:app :lt.plugins.vim/load-cm-keys]
  [:editor :lt.plugins.vim/activate-vim]
  [:editor.keys.vim :lt.plugins.vim/mode-change]
  [:find-bar :lt.plugins.vim/find-bar-inactive]
