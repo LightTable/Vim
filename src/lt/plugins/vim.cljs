@@ -8,7 +8,8 @@
             [lt.objs.command :as cmd :refer [command]]
             [lt.objs.editor :as editor]
             [lt.objs.console :as console]
-            [lt.objs.notifos :as notifos])
+            [lt.objs.notifos :as notifos]
+            [lt.objs.tabs :as tabs])
   (:require-macros [lt.macros :refer [behavior]]))
 
 (def mode-tags {:all #{:editor.keys.vim.insert :editor.keys.normal
@@ -38,6 +39,14 @@
   (object/remove-tags ed [:editor.keys.vim])
   (editor/off ed "vim-mode-change" (mode-change-listener ed))
   (object/raise ed :mode-change "normal-editor"))
+
+(defn close-ts-if-empty!
+  "Closes tab and tabset too if empty"
+  [obj]
+  (when-let [ts (:lt.objs.tabs/tabset @obj)]
+    (when (= (count (:objs @ts)) 1)
+      (tabs/rem-tabset ts)))
+  (object/raise obj :close))
 
 (behavior ::mode-change
           :triggers #{:mode-change}
@@ -137,13 +146,13 @@
           :exec (fn []
                   (let [cur (pool/last-active)]
                     (object/raise cur :save)
-                    (object/raise cur :close)))})
+                    (close-ts-if-empty! cur)))})
 
 (command {:command :vim-quit
           :desc "Vim: :q"
           :exec (fn []
                   (let [cur (pool/last-active)]
-                    (object/raise cur :close)))})
+                    (close-ts-if-empty! cur)))})
 
 (command {:command :vim-nohlsearch
           :desc "Vim: :nohlsearch"
