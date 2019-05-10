@@ -148,6 +148,13 @@
                     (object/raise cur :save)
                     (close-ts-if-empty! cur)))})
 
+(command {:command :vim-save-quit-x
+          :desc "Vim: :x"
+          :exec (fn []
+                  (let [cur (pool/last-active)]
+                    (object/raise cur :save)
+                    (object/raise cur :close)))})
+
 (command {:command :vim-quit
           :desc "Vim: :q"
           :exec (fn []
